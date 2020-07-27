@@ -15,7 +15,7 @@ CREATE TABLE libro(
   autor_id INT UNSIGNED NOT NULL,
   descripcion VARCHAR(250)
   FOREIGN KEY(autor_id) REFERENCES autor(autor_id)
-)
+);
 -- Valores unicos y nulos
 --  NOT NULL  campo obligatorio, no puede ser nulo
 --  UNIQUE   valor unico
@@ -52,3 +52,5 @@ SELECT DISTINCT titulo FROM libro;
 SELECT autor_id AS autor, titulo AS nombre FROM libro
 -- ACTUALIZAR Registros --
 UPDATE libro SET descripcion = "Nuevo descripcion", ventas = 100 WHERE titulo = "El Hobbit";
+--  Borrar registros --
+DELETE FROM libro WHERE autor_id = 1;
