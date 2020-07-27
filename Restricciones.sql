@@ -29,3 +29,26 @@ ALTER TABLE libro ADD venta INT UNSIGNED NOT NULL;
 ALTER TABLE libro ADD stock INT UNSIGNED NOT NULL DEFAULT 10;
 --  Eliminar columna
 ALTER TABLE libro DROP COLUNM stock;
+--  Registros mediante condiciones --
+SELECT * FROM libro\G; -- Despliega los registros en forma de cartas.
+SELECT * FROM libro WHERE titulo = "";
+--  OPERADORES LOGICOS --
+AND
+OR
+NOT
+SELECT * FROM libro WHERE titulo = "Carl" AND autor_id = 1;
+--  Registros Nulos --
+SELECT * FROM libro WHERE titulo IS NULL;
+SELECT * FROM libro WHERE titulo IS NOT NULL;
+SELECT * FROM libro WHERE titulo <=> NULL; -- Operador de seguridad <=>
+--  Regustros mediante Rangos --
+SELECT titulo FROM libro WHERE fecha_nacimiento BETWEEN '1997-09-12' AND '1090-09-12';
+--  Busquedas por listas --
+SELECT * FROM libro WHERE titulo = "" OR titulo = "" OR titulo = "";
+SELECT * FROM libro WHERE titulo IN ("", "", "", "","");
+-- Registros unicos --
+SELECT DISTINCT titulo FROM libro;
+-- Alias --
+SELECT autor_id AS autor, titulo AS nombre FROM libro
+-- ACTUALIZAR Registros --
+UPDATE libro SET descripcion = "Nuevo descripcion", ventas = 100 WHERE titulo = "El Hobbit";
