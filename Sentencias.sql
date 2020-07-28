@@ -48,3 +48,13 @@ SELECT RAND(); -- Numero randon
 SELECT RAND(RAND() * 100); --
 SELECT TRUNCATE(1.12133455, 3); -- Me permite dejar solo 3 decimales o segun lo desee
 SELECT POWER(2, 16); -- ELEva un numero a una potencia
+/*
+  FUNCIONES SoBRE FECHAS
+*/
+SELECT NOW();
+SELECT @now = NOW();
+SELECT SECOND(@now), MINUTE(@now), HOUR(@now), MONTH(@now), YEAR(@now);
+SELECT DATEOFWEEK(@now), DAYOFMONTH(@now), DATEOFYEAR(@@now);
+SELECT DATE(@now);
+SELECT CURDATE();
+SELECT @now + INTERVAL 30 DAY;
