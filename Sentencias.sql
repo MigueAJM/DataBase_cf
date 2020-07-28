@@ -29,3 +29,22 @@ CREATE TABLE IF NOT EXISTS autor(
 
 -- CONSULTAS RAPIDAS
 -- mysql -u root -p libreria -e 'SELECT * FROM autor;'
+
+
+
+/*
+  Funciones sobre strings
+*/
+SELECT CONCATC(nombre,' ',apellido) AS nombre_completo FROM autor; -- Concatenar
+SELECT LENGTH("Hola mundo"); -- muestra la cantidad de caracteres
+SELECT UPER(nombre), LOWER(nombre) FROM autor; -- UPER mayusculas  LOWER minusculas
+SELECT TRIM("  con espacios al inicio y al final  "); -- Los espacios son removidos
+SELECT LEFT("Esta es una cadena de caracteres", 5) AS subsstring_izquierdo, RIGHT("Esta es una cadena", 10) AS subsytring_derecho; -- Retorna los primeros 5 caracteres
+SELECT * FROM libro WHERE LEFT(titulo, 12) = "Harry Poter";
+/*
+  Funciones sobre numeros
+*/
+SELECT RAND(); -- Numero randon
+SELECT RAND(RAND() * 100); --
+SELECT TRUNCATE(1.12133455, 3); -- Me permite dejar solo 3 decimales o segun lo desee
+SELECT POWER(2, 16); -- ELEva un numero a una potencia
