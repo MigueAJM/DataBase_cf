@@ -75,3 +75,11 @@ SELECT IFNULL(seudonimo, "El autor no cuenta con seudonimo") FROM autor;
   RETURN fecha + INTERVAL dias DAY;
   END//
   DELIMITER ;
+/*
+Listar Funciones
+*/
+SELECT name FROM mysql.proc WHERE db = database() AND type = 'FUNCTION';
+DROP FUNCTION agregar_dias;
+/*
+Ejecutar sentencias dentro de FUNCIONES
+*/
