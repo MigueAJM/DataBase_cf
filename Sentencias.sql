@@ -97,3 +97,13 @@ UPDATE libro SET  paginas = obtener_paginas();
 Mostar contenido de tabla en forma de cartas
 */
 SELECT * FROM libro\G;
+/*
+Sentencias avanzadas
+*/
+--  busqueda mediante strings
+SELECT * FROM libro WHERE titulo LIKE 'Harry Potter%'\G;
+SELECT * FROM libro WHERE titulo LIKE '%anillo';
+SELECT * FROM libro WHERE titulo LIKE '%la%';
+SELECT * FROM libro WHERE titulo LIKE '_a%';
+SELECT * FROM libro WHERE titulo LIKE '__b__';
+SELECT * FROM libro WHERE titulo LIKE '_a__o%';
