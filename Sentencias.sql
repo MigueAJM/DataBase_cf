@@ -93,3 +93,7 @@ END //
 
 DELIMITER ;
 UPDATE libro SET  paginas = obtener_paginas();
+/*
+Mostar contenido de tabla en forma de cartas
+*/
+SELECT * FROM libro\G;
