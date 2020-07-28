@@ -58,3 +58,10 @@ SELECT DATEOFWEEK(@now), DAYOFMONTH(@now), DATEOFYEAR(@@now);
 SELECT DATE(@now);
 SELECT CURDATE();
 SELECT @now + INTERVAL 30 DAY;
+
+/*
+Funciones sobre condiciones
+*/
+SELECT IF(10>9, "El numero si es mayor", "El numero no es mayor");
+SELECT IF(paginas = 0, "El libro no posee paginas", paginas) FROM libro;
+SELECT IFNULL(seudonimo, "El autor no cuenta con seudonimo") FROM autor;
