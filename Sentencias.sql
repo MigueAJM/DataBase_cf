@@ -65,3 +65,13 @@ Funciones sobre condiciones
 SELECT IF(10>9, "El numero si es mayor", "El numero no es mayor");
 SELECT IF(paginas = 0, "El libro no posee paginas", paginas) FROM libro;
 SELECT IFNULL(seudonimo, "El autor no cuenta con seudonimo") FROM autor;
+/*
+  CREAR FUNCIONES
+  */
+  DELIMITER //   -- para terminar la sentencia se usara doble slash
+  CREATE FUNCTION agregar_dias(fecha DATE, dias INT)
+  RETURNS DATE
+  BEGIN
+  RETURN fecha + INTERVAL dias DAY;
+  END//
+  DELIMITER ;
