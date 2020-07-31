@@ -220,3 +220,17 @@ SELECT
   libro.fecha_crecion
 FROM libro
 INNER JOIN autor USING(autor_id);
+
+-- LEFT JOIN
+CREATE TABLE libro_usuario(
+  libro_id INT UNSIGNED NOT NULL,
+  usuario_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY(libro_id) REFERENCES libro(libro_id),
+  FOREIGN KEY(autor_id) REFERENCES autor(autor_id),
+  fecha_crecion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+SELECT
+  CONCAT(nombre, " ", apellido)
+FROM usuario
+LEFT JOIN libro_usuairo ON usuario.usuario_id = libro_usuairo.usuario_id
+WHERE libro_usuairo.usuario_id IS NOT NULL;
