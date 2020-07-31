@@ -284,3 +284,16 @@ INNER JOIN libro_usuario ON usuario.usuario_id = libro_usuario.usuario_id
 GROUP BY usuario.usuario_id;
 -- borrar Vistas
 DROP VIEW prestamos_usuarios_vw;
+
+-- Editar Vistas
+CREATE OR REPLACE VIEW prestamos_usuarios_vw AS
+SELECT
+  usuario.usuario_id,
+  usuario.nombre,
+  usuario.email,
+  usuario.username,
+  COUNT(usuario.usuario_id) AS total_prestamos
+FROM usuario
+INNER JOIN libro_usuario ON usuario.usuario_id = libro_usuario.usuario_id
+            AND libro_usuario.fecha_creacion >= CURDATE() - INTERVAL 5 DAY
+GROUP BY usuario.usuario_id;
