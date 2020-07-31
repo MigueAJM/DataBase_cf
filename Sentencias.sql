@@ -110,3 +110,7 @@ SELECT * FROM libro WHERE titulo LIKE '_a__o%';
 
 -- Expresiones regulares
 SELECT titulo FROM libro WHERE titulo REGEXP '^[HL]' -- titulos que comiencen con  H o L
+
+-- ORdenar REGISTROS
+SELECT * FROM libro ORDER BY titulo AND id_libro ASC; -- ascendente
+SELECT * FROM libro ORDER BY titulo DESC; -- Desendente
