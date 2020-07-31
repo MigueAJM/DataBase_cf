@@ -297,3 +297,19 @@ FROM usuario
 INNER JOIN libro_usuario ON usuario.usuario_id = libro_usuario.usuario_id
             AND libro_usuario.fecha_creacion >= CURDATE() - INTERVAL 5 DAY
 GROUP BY usuario.usuario_id;
+
+ /*
+  Procedimientos almacenados
+*/
+-- Crear Procedimientos
+DELIMITER //
+CREATE PROCEDURE prestamo(usuario_id INT, libro_id INT)
+BEGIN
+  INSERT INTO libro_usuario(usuario_id, libro_id) VALUES(usuario_id, libro_id);
+  UPDATE libro SET stock = stock - 1 WHERE linbro.libro_id = libro_id
+END //
+DELIMITER ;
+
+SELECT name FROM mysql.proc WHERE db = database() AND type = 'PROCEDURE';
+
+CALL prestamo(3, 20); -- llamar al procedimiento
