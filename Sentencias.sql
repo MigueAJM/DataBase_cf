@@ -119,3 +119,29 @@ SELECT * FROM libro ORDER BY titulo DESC; -- Desendente
 SELECT titulo FROM libro LIMIT 10;
 SELECT titulo FROM libro WHERE autor_id = 2 LIMIT 50;
 SELECT libro_id, titulo FROM libro LIMIT 0, 5; -- limitar por partes comienza en la posicion 0 y me muestra 5
+
+-- Funciones de agregacion: funciones que se ejecutan en un grupo de datos
+COUNT(); -- Cuenta REGISTROS
+SELECT COUNT(*) FROM autor; -- * indica que se cuenten todos los registros
+SELECT COUNT(*) FROM autor WHERE seudonimo IS NOT NULL;
+SELECT COUNT(seudonimo) autor; -- trabajar columnas siempre y cuando el registro tenga valor
+-- Si es null no se tomara en Cuenta
+DELIMITER //
+CREATE FUNCTION obtener_ventas()
+RETURNS INT
+BEGIN
+  SET @paginas = (SELECT (ROUND(RAND() *100) * 4));
+  RETURN @paginas;
+END//
+DELIMITER ;
+
+UPDATE libro SET ventas = obtener_ventas;
+
+SUM() -- SUMA
+SELECT SUM(ventas) FROM libro;
+MAX() -- Maximo
+SELECT MAX(ventas) FROM libro;
+MIN() -- Minimo
+SELECT MIN(ventas) FROM libro;
+AVG() -- Promedio
+SELECT AVG(ventas) FROM libro;
