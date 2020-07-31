@@ -313,3 +313,6 @@ DELIMITER ;
 SELECT name FROM mysql.proc WHERE db = database() AND type = 'PROCEDURE';
 
 CALL prestamo(3, 20); -- llamar al procedimiento
+
+-- Eliminar procedimientos
+DROP PROCEDURE prestamo();
