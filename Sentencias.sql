@@ -306,7 +306,7 @@ DELIMITER //
 CREATE PROCEDURE prestamo(usuario_id INT, libro_id INT)
 BEGIN
   INSERT INTO libro_usuario(usuario_id, libro_id) VALUES(usuario_id, libro_id);
-  UPDATE libro SET stock = stock - 1 WHERE linbro.libro_id = libro_id
+  UPDATE libro SET stock = stock - 1 WHERE linbro.libro_id = libro_id;
 END //
 DELIMITER ;
 
@@ -316,3 +316,14 @@ CALL prestamo(3, 20); -- llamar al procedimiento
 
 -- Eliminar procedimientos
 DROP PROCEDURE prestamo();
+
+-- obtenr valores
+DELIMITER //
+CREATE PROCEDURE prestamo(usuario_id INT, libro_id INT, OUT cantidad INT)
+BEGIN
+  INSERT INTO libro_usuario(usuario_id, libro_id) VALUES(usuario_id, libro_id);
+  UPDATE libro SET stock = stock - 1 WHERE linbro.libro_id = libro_id;
+
+  SET cantidad = (SELECT stock FROM libro where libro.libro_id = libro_id);
+END //
+DELIMITER ;
