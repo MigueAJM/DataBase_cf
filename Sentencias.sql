@@ -193,3 +193,17 @@ SELECT IF(
   "Disponible",
   "No disponible"
 ) AS message;
+
+
+/*
+  JOIN
+*/
+-- Inner join
+SELECT
+  libro.titulo,
+  CONCAT(autor.nombre, " ", autor.apellido) AS nombre_autor,
+  libro.fecha_crecion
+FROM libro
+INNER JOIN autor ON libro.autor_id = autor.autor_id;
+
+--
