@@ -327,3 +327,22 @@ BEGIN
   SET cantidad = (SELECT stock FROM libro where libro.libro_id = libro_id);
 END //
 DELIMITER ;
+
+-- Condiciones
+DELIMITER //
+CREATE PROCEDURE prestamo(usuario_id INT, libro_id INT, OUT cantidad INT)
+BEGIN
+  SET cantidad = (SELECT stock FROM libro where libro.libro_id = libro_id);
+  IF cantidad > 0 THEN
+    INSERT INTO libro_usuario(usuario_id, libro_id) VALUES(usuario_id, libro_id);
+    UPDATE libro SET stock = stock - 1 WHERE linbro.libro_id = libro_id;
+    SET cantidad = cantidad - 1;
+  ELSE
+    SELECT "No es posible realizar el prestamo" AS mensaje_error;
+  END IF;
+END //
+DELIMITER ;
+ -- se puede colocar n cantidad de ELSEIF
+SET @cantidad = -1;
+CALL prestamoi(4, 20, @cantidad);
+SELECT @cantidad;
