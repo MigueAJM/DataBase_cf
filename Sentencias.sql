@@ -145,3 +145,7 @@ MIN() -- Minimo
 SELECT MIN(ventas) FROM libro;
 AVG() -- Promedio
 SELECT AVG(ventas) FROM libro;
+
+-- Agrupamiento
+SELECT autor_id SUM(ventas) FROM libro GROUP BY autor_id;
+SELECT autor_id SUM(ventas) AS total FROM libro GROUP BY autor_id ORDER BY DESC LIMIT 1; 
