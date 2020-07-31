@@ -206,4 +206,17 @@ SELECT
 FROM libro
 INNER JOIN autor ON libro.autor_id = autor.autor_id;
 
---
+SELECT
+  libro.titulo,
+  CONCAT(autor.nombre, " ", autor.apellido) AS nombre_autor,
+  libro.fecha_crecion
+FROM libro
+INNER JOIN autor ON libro.autor_id = autor.autor_id
+AND autor.seudonimo IS NOT NULL;
+-- sub clausula using
+SELECT
+  libro.titulo,
+  CONCAT(autor.nombre, " ", autor.apellido) AS nombre_autor,
+  libro.fecha_crecion
+FROM libro
+INNER JOIN autor USING(autor_id);
