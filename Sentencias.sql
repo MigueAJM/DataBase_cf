@@ -264,5 +264,23 @@ ORDER BY username DESC;
 INSERT INTO
   libro.usuario(libro_id, usuario_id)
 SELECT
-  libro_id, usuario_id 
+  libro_id, usuario_id
 FROM usuario CROSS JOIN libro;
+
+/*
+Vistas
+*/
+-- CREAR Vistas
+-- Debemos utilizar un estandar, en este caso vw al final de nuestra vista
+CREATE VIEW prestamos_usuarios_vw AS
+SELECT
+  usuario.usuario_id,
+  usuario.nombre,
+  usuario.email,
+  usuario.username,
+  COUNT(usuario.usuario_id) AS total_prestamos
+FROM usuario
+INNER JOIN libro_usuario ON usuario.usuario_id = libro_usuario.usuario_id
+GROUP BY usuario.usuario_id;
+-- borrar Vistas
+DROP VIEW prestamos_usuarios_vw;
