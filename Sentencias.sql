@@ -114,3 +114,8 @@ SELECT titulo FROM libro WHERE titulo REGEXP '^[HL]' -- titulos que comiencen co
 -- ORdenar REGISTROS
 SELECT * FROM libro ORDER BY titulo AND id_libro ASC; -- ascendente
 SELECT * FROM libro ORDER BY titulo DESC; -- Desendente
+
+-- Limitar REGISTROS
+SELECT titulo FROM libro LIMIT 10;
+SELECT titulo FROM libro WHERE autor_id = 2 LIMIT 50;
+SELECT libro_id, titulo FROM libro LIMIT 0, 5; -- limitar por partes comienza en la posicion 0 y me muestra 5
