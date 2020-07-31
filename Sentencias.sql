@@ -147,5 +147,9 @@ AVG() -- Promedio
 SELECT AVG(ventas) FROM libro;
 
 -- Agrupamiento
-SELECT autor_id SUM(ventas) FROM libro GROUP BY autor_id;
-SELECT autor_id SUM(ventas) AS total FROM libro GROUP BY autor_id ORDER BY DESC LIMIT 1; 
+SELECT autor_id, SUM(ventas) FROM libro GROUP BY autor_id;
+SELECT autor_id,SUM(ventas) AS total FROM libro GROUP BY autor_id ORDER BY DESC LIMIT 1;
+
+-- Condiciones bajo Agrupamiento
+SELECT autor_id, SUM(ventas) AS total FROM libro GROUP BY autor_id HAVING SUM(ventas) > 100;
+-- HAVING clausula de soporte a la clausula WHERE nos permite hacer filtros sobre un grupo de datos
