@@ -251,5 +251,18 @@ FROM usuario
 INNER JOIN libro_usuario.usuario_id = libro.usuario_id
             AND DATE(libro.fecha_crecion) = CURDATE()
 INNER JOIN libro ON libro_usuario.libro_id = libro.libro_id
-INNER JOIN autor ON libro.autor_id = autor.autor_id 
+INNER JOIN autor ON libro.autor_id = autor.autor_id
             AND autor.seudonimo IS NOT NULL;
+
+-- Productos cartecianos
+SELECT
+  usuario.username, libro.titulo
+FROM usuario
+CROSS JOIN libro
+ORDER BY username DESC;
+
+INSERT INTO
+  libro.usuario(libro_id, usuario_id)
+SELECT
+  libro_id, usuario_id 
+FROM usuario CROSS JOIN libro;
