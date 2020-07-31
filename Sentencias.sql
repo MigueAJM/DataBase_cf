@@ -238,8 +238,18 @@ WHERE libro_usuario.usuario_id IS NOT NULL;
 
 -- RIGHT JOIN
 SELECT
-  CONCAT(nombre, " ", apellido)
+  CONCAT(nombre, " ", apellido),
   libro_usuairo.libro_id
 FROM libro_usuario
 LEFT JOIN usuario ON usuario.usuario_id = libro_usuario.usuario_id
 WHERE libro_usuario.usuario_id IS NOT NULL;
+
+-- Multiples Joins
+SELECT DISTINCT
+  CONCAT(usuario.nombre, " ", usuario.apellido) AS nombre_usuario
+FROM usuario
+INNER JOIN libro_usuario.usuario_id = libro.usuario_id
+            AND DATE(libro.fecha_crecion) = CURDATE()
+INNER JOIN libro ON libro_usuario.libro_id = libro.libro_id
+INNER JOIN autor ON libro.autor_id = autor.autor_id 
+            AND autor.seudonimo IS NOT NULL;
