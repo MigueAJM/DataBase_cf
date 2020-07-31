@@ -166,4 +166,23 @@ CREATE TABLE usuario(
 );
 SELECT CONCAT(nombre, " ", apellido) AS nombre_completo FROM autor
 UNION
-SELECT CONCAT(nombre, " ", apellido) AS nombre_completo FROM usuario; 
+SELECT CONCAT(nombre, " ", apellido) AS nombre_completo FROM usuario;
+
+-- Subconsultas: consultas anidadas
+SELECT AVG(ventas) FROM libro;
+SELECT
+  autor_id
+FROM libro
+GROUP BY autor_id
+HAVING SUM(ventas) > 328.1818 ;
+
+SELECT CONCAT(nombre, " ", apellido)
+FROM autor_id
+WHERE autor_id IN(
+SELECT 
+  autor_id
+FROM libro
+GROUP BY autor_id
+HAVING SUM(ventas) > (SELECT AVG(ventas) FROM libro;));
+ -- PRimero se ejecuta la del promedio, despues la
+-- del siguiente nivel (del nivel mas bajo al mas alto)
