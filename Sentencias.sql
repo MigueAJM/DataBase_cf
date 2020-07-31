@@ -346,3 +346,20 @@ DELIMITER ;
 SET @cantidad = -1;
 CALL prestamoi(4, 20, @cantidad);
 SELECT @cantidad;
+
+-- Casos
+CREATE PROCEDURE tipo_lector(usuario_id INT)
+BEGIN
+  SET @cantidad = (SELECT COUNT(*) FROM libro_usuario
+                    WHERE libro_usuario.usuario_id = usuario_id);
+  CASE
+    WHEN @cantidad > 20 THEN
+      SELECT "Fanatico" AS message;
+    WHEN @cantidad > 10 AND @cantidad < 20 THEN
+      SELECT "Aficionado" AS message;
+    WHEN @cantidad > 5 AND @cantidad < 10 THEN
+      SELECT "Promedio" AS message;
+    ELSE
+      SELECT "nuevo" AS message;
+  END CASE;
+END//
