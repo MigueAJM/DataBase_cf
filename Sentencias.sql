@@ -230,7 +230,16 @@ CREATE TABLE libro_usuario(
   fecha_crecion DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 SELECT
-  CONCAT(nombre, " ", apellido)
+  CONCAT(nombre, " ", apellido),
+  libro_usuario.libro_id
 FROM usuario
-LEFT JOIN libro_usuairo ON usuario.usuario_id = libro_usuairo.usuario_id
-WHERE libro_usuairo.usuario_id IS NOT NULL;
+LEFT JOIN libro_usuario ON usuario.usuario_id = libro_usuario.usuario_id
+WHERE libro_usuario.usuario_id IS NOT NULL;
+
+-- RIGHT JOIN
+SELECT
+  CONCAT(nombre, " ", apellido)
+  libro_usuairo.libro_id
+FROM libro_usuario
+LEFT JOIN usuario ON usuario.usuario_id = libro_usuario.usuario_id
+WHERE libro_usuario.usuario_id IS NOT NULL;
