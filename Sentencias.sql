@@ -153,3 +153,17 @@ SELECT autor_id,SUM(ventas) AS total FROM libro GROUP BY autor_id ORDER BY DESC 
 -- Condiciones bajo Agrupamiento
 SELECT autor_id, SUM(ventas) AS total FROM libro GROUP BY autor_id HAVING SUM(ventas) > 100;
 -- HAVING clausula de soporte a la clausula WHERE nos permite hacer filtros sobre un grupo de datos
+
+
+-- UNir resultados
+CREATE TABLE usuario(
+  usuario_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(30) NOT NULL,
+  apellido VARCHAR(23),
+  username VARCHAR(25) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+SELECT CONCAT(nombre, " ", apellido) AS nombre_completo FROM autor
+UNION
+SELECT CONCAT(nombre, " ", apellido) AS nombre_completo FROM usuario; 
