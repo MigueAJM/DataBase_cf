@@ -403,3 +403,22 @@ SELECT * FROM libro_usuario;
 COMMIT; -- Termina la transaccion  persiten de forma permanente
 
 ROLLBACK; -- Termina la transaccion y regresa al estado antes de iniciarse la transaccion
+
+-- Transacciones and store PROCEDURE
+DELIMITER //
+CREATE PROCEDURE prestamo(usuario_id INT, libro_id INT)
+BEGIN
+  DECLARE EXIT SQLEXCEPTION -- ocurre un error
+  BEGIN
+    ROLLBACK;
+  END;
+
+  START TRANSACTION;
+    INSERT INTO libro_usuario(libro_id, usuario_id) VALUES(libro_id, usuario_id);
+    UPDATE libro SET stock = stock - 1 WHERE libro.libro_id = libro_id;
+  COMMIT;
+
+END //
+DELIMITER ;
+
+CALL prestamo(3, 3);
