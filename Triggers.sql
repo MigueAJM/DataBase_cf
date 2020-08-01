@@ -9,3 +9,11 @@ BEGIN
 END;
 //
 DELIMITER;
+
+-- Evento delete
+CREATE TRIGGER after_delete_actualizacion_libro
+AFTER DELETE ON cantidad_libros
+FOR EACH ROW
+BEGIN
+  UPDATE autor SET cantidad_libros = cantidad_libros - 1 WHERE autor_id = OLD.autor_id;
+END;
