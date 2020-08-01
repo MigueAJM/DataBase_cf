@@ -26,5 +26,8 @@ BEGIN
   IF(NEW.autor_id != OLD.autor_id) THEN
     UPDATE autor SET cantidad_libros = cantidad_libros + 1 WHERE autor_id = NEW.autor_id;
     UPDATE autor SET cantidad_libros = cantidad_libros - 1 WHERE autor_id = OLD.autor_id;
-
 END;
+
+-- Listado y Eliminacion de triggers
+SHOW TRIGGERS\G; -- Listar triggers
+DROP TIGGERS IF EXISTS libreria.after_delete_actualizacion_libro; -- DROP TRIGGERS DAtabase.triggers
