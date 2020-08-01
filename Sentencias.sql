@@ -385,3 +385,21 @@ BEGIN
     UNTIL @iteracion >= 5
   END REPEAT;
 END //
+/*
+  Transacciones
+*/
+-- Bloqueo de tablas
+-- Trnsaccones
+--  Implementar transacciones
+START TRANSACTION;
+SET @libro_id = 20, @usuario_id = 3;
+
+UPDATE libro SET stock = stock - 1 WHERE libro_id = @libro_id;
+SELECT stock FROM libro WHERE libro_id = @libro_id;
+
+INSERT INTO libro_usuario(libro_id, usuario_id) VALUES(@libro_id, @usuario_id);
+SELECT * FROM libro_usuario;
+
+COMMIT; -- Termina la transaccion  persiten de forma permanente
+
+ROLLBACK; -- Termina la transaccion y regresa al estado antes de iniciarse la transaccion
