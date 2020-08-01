@@ -363,3 +363,25 @@ BEGIN
       SELECT "nuevo" AS message;
   END CASE;
 END//
+
+-- Ciclos
+-- WHILE
+CREATE PROCEDURE libro_azar()
+BEGIN
+  SET @Iteracion = 0;
+
+  WHILE @iteracion < 5 DO
+    SELECT libro_id, titulo FROM libro ORDER BY RAND() LIMIT 1;
+    SET @Iteracion = @iteracion + 1;
+  END WHILE;
+END //
+-- REPEAT
+CREATE PROCEDURE libro_azar()
+BEGIN
+  SET @Iteracion = 0;
+  REPEAT
+    SELECT libro_id, titulo FROM libro ORDER BY RAND() LIMIT 1;
+    SET @Iteracion = @iteracion + 1;
+    UNTIL @iteracion >= 5
+  END REPEAT;
+END //
